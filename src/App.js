@@ -1,15 +1,23 @@
-import "./App.css";
+import React from "react";
+import { Route, Routes } from "react-router-dom";
+import Header from "./components/Header/Header";
+import Basket from "./components/Pages/BasketPage/Basket";
+import NewsPages from "./components/Pages/NewsPage/NewsPages";
+import ProductPro from "./components/ProductProvider/ProductProvider";
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-      </header>
-    </div>
+    <>
+      <ProductPro>
+        <Header />
+        <Routes>
+          <Route path="/" element={<NewsPages />} />
+          <Route path="/news" element={<NewsPages />} />
+          <Route path="/basket" element={<Basket />} />
+        </Routes>
+      </ProductPro>
+    </>
   );
-}
+};
 
 export default App;
