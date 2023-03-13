@@ -6,9 +6,13 @@ export const ProductContext = createContext();
 const ProductPro = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  const saveDataToLocalStorage = (state) => {
-    const updatedState = JSON.stringify(state);
-    window.localStorage.setItem("state", updatedState);
+  const saveDataToLocalStorage = (newState) => {
+    try {
+      const updatedState = JSON.stringify(newState);
+      window.localStorage.setItem("state", updatedState);
+    } catch (error) {
+      console.log(error);
+    }
   };
   useEffect(() => {
     saveDataToLocalStorage(state);

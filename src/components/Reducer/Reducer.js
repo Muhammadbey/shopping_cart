@@ -2,7 +2,7 @@ import mockProducts from "../../mockProducts";
 
 export const loadState = () => {
   try {
-    return JSON.parse(window.localStorage.getItemt("state"));
+    return JSON.parse(window.localStorage.getItem("state"));
   } catch (error) {}
 };
 

@@ -6,9 +6,7 @@ const Basket = () => {
   console.log(state);
   return (
     <div>
-      <h1>helo</h1>
       <ul>
-        <h1>cdscscd</h1>
         {state.basket.map((product) => {
           return (
             <li key={product.id}>
