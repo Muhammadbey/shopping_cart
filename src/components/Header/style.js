@@ -24,3 +24,16 @@ export const List = styled.div`
     padding: 15px 10px;
   }
 `;
+
+export const UserBtn = styled.button`
+  font-size: 20px;
+  font-weight: 600;
+  padding: 15px;
+  border-radius: 18px;
+  outline: none;
+  border: none;
+  :hover {
+    background-color: orange;
+    cursor: pointer;
+  }
+`;

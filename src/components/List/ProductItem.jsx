@@ -1,76 +1,55 @@
-import React, { useReducer } from "react";
-import { initialState, reducer, SHOPPING_ACTION } from "../Reducer/Reducer";
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { basketActions } from "../../store/reducers/slices/basketSlice";
+import { getBasketProductsItem } from "../../store/selectors";
 import { AddButton, ButtonWrapper, ItemList } from "./style";
 
 const ProductItem = ({ product }) => {
-  const [state, dispatch] = useReducer(reducer, initialState);
+  const dispatch = useDispatch();
 
-  console.log(state);
+  const basketProducts = useSelector(getBasketProductsItem);
 
-  const basketProduct = state.basket.find(
+  const basketProduct = basketProducts.find(
     (basketItem) => basketItem.id === product.id
   );
+
   const addToBasket = (product) => {
-    dispatch({
-      type: SHOPPING_ACTION.ADD,
-      payload: product,
-    });
+    dispatch(basketActions.add(product));
   };
 
   const removeFromBasket = (product) => {
-    dispatch({
-      type: SHOPPING_ACTION.REMOVE_FROM_BASKET,
-      payload: product,
-    });
+    dispatch(basketActions.remove(product));
   };
 
   const incereaseQuantity = (product) => {
-    dispatch({
-      type: SHOPPING_ACTION.INCREASE_QUANTITY,
-      payload: { price: product.price, id: product.id },
-    });
+    const { id, price } = product;
+
+    dispatch(basketActions.increaseQuantity({ id, price }));
   };
 
   const decereaseQuantity = (product) => {
-    if (basketProduct.quantity === 1) {
+    const { id, price } = product;
+
+    if (basketProduct.quantity <= 1) {
       removeFromBasket(product);
       return;
     }
-    dispatch({
-      type: SHOPPING_ACTION.DECREASE_QUANTITY,
-      payload: { price: product.price, id: product.id },
-    });
+    dispatch(basketActions.decreaseQuantity({ id, price }));
   };
 
   return (
-    <ItemList>
+    <ItemList key={product.id}>
       <img src={product.image} alt="" />
       <h3>{product.title}</h3>
       <p>${product.price}</p>
       {basketProduct ? (
         <ButtonWrapper>
-          <button
-            onClick={() => {
-              decereaseQuantity(product);
-            }}
-          >
-            -
-          </button>
+          <button onClick={() => decereaseQuantity(product)}>-</button>
           <p>{basketProduct.quantity}</p>
-          <button
-            onClick={() => {
-              incereaseQuantity(product);
-            }}
-          >
-            +
-          </button>
+          <button onClick={() => incereaseQuantity(product)}>+</button>
         </ButtonWrapper>
       ) : (
-        <AddButton
-          onClick={() => {
-            addToBasket(product);
-          }}
-        >
+        <AddButton onClick={() => addToBasket(product)}>
           Add to basket
         </AddButton>
       )}

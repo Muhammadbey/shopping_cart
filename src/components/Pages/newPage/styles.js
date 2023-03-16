@@ -8,7 +8,7 @@ import styled from "styled-components";
 // //   font-size: 35px;
 // // `;
 
-export const ProductItems = styled.ul`
+export const Ullist = styled.ul`
   width: 100%;
   padding: 50px;
   display: flex;
