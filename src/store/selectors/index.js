@@ -1,3 +1,3 @@
-export const getProductsList= (state) => state.productsReducer;
+export const getProductsList = (state) => state.productsReducer.products;
 
-export const getBasketProductsItem = (state) => state.basketReducer;
+export const getBasketProductsItem = (state) => state.basketReducer.products;

@@ -4,21 +4,21 @@ import { getProductsList } from "../../../store/selectors";
 import ProductItem from "../../list/ProductItem";
 import { Ullist } from "./styles";
 
-const ProductList = ({product}) => {
+const ProductList = ({ product }) => {
   const products = useSelector(getProductsList);
 
   console.log(products);
 
-  // const isExistOnBasket = (prodId) => {
-  //   products.basket.some((prod) => prod.id === prodId);
-  // };
+  const isExistOnBasket = (prodId) => {
+    products.basket.some((prod) => prod.id === prodId);
+  };
 
   return (
     <div style={{ height: "100vh", backgroundColor: "white" }}>
       <h1 style={{ textAlign: "center", paddingTop: "25px" }}>Products</h1>
       <Ullist>
-        {product?.map((prod) => {
-          return <ProductItem key={products.id} products={prod} />;
+        {products.map((prod) => {
+          return <ProductItem key={products.id} product={prod} />;
         })}
       </Ullist>
     </div>
