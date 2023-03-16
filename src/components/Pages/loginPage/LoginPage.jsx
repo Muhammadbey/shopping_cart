@@ -23,13 +23,24 @@ const LoginPage = () => {
           width: "250px",
         }}
       >
-        <h1 style={{ display: "flex", justifyContent: "center" }}>
+        <h1
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            fontSize: "50px",
+          }}
+        >
           Login page
         </h1>
         <input
           type="text"
           placeholder="phone number"
-          style={{ padding: "10px", fontSize: "20px", marginTop: "20px" }}
+          style={{
+            padding: "10px",
+            fontSize: "20px",
+            marginTop: "20px",
+            marginBottom: "10px",
+          }}
           onChange={(e) => setPhoneNumber(e.target.value)}
         />
         <input
