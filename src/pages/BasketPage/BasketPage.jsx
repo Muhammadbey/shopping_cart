@@ -1,11 +1,11 @@
 import React from "react";
 
-const Basket = () => {
+const BasketPage = () => {
   return (
     <div>
       <ul>
         {/* {state.basket.map((product) => { */}
-          {/* return (
+        {/* return (
             <li key={product.id}>
               <img src={product.image} alt="" />
               <h3>{product.title}</h3>
@@ -18,4 +18,4 @@ const Basket = () => {
   );
 };
 
-export default Basket;
+export default BasketPage;

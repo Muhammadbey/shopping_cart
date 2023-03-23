@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { ShoppingCart } from "phosphor-react";
 
 import { HeaderWrapper, OrderList, List, UserBtn } from "./style";
-import { ROUTES } from "../router/Router";
+import { ROUTES } from "../Router/Router";
 const Header = () => {
   return (
     <HeaderWrapper>

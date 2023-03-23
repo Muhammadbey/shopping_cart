@@ -1,9 +1,10 @@
 import React from "react";
-import { Route, Routes } from "react-router-dom";
-import Basket from "../Pages/basketPage/Basket";
-import LoginPage from "../Pages/loginPage/LoginPage";
-import NewsPages from "../Pages/newPage/NewsPages";
-import RegisterPage from "../Pages/registerPage/RegisterPage";
+import { Navigate, Route, Routes } from "react-router-dom";
+// import NewsPage from "../../pages/NewPage/NewsPage";
+import BasketPage from "../../pages/BasketPage/BasketPage";
+import LoginPage from "../../pages/LoginPage/LoginPage";
+import RegisterPage from "../../pages/RegisterPage/RegisterPage";
+import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 
 export const ROUTES = {
   NEW: "/news",
@@ -15,11 +16,14 @@ const Router = () => {
   return (
     <>
       <Routes>
-        <Route path="/" element={<NewsPages />} />
-        <Route path={ROUTES.NEW} element={<NewsPages />} />
-        <Route path={ROUTES.BASKET} element={<Basket />} />
+        <Route path="/" element={<Navigate to={ROUTES.LOGIN} />} />
+        <Route element={<ProtectedRoute />}>
+          <Route path={ROUTES.NEW} element={<Navigate to={ROUTES.NEW} />} />
+        </Route>
+        <Route path={ROUTES.BASKET} element={<BasketPage />} />
         <Route path={ROUTES.REGISTER} element={<RegisterPage />} />
         <Route path={ROUTES.LOGIN} element={<LoginPage />} />
+        <Route path="*" element={<h1>404</h1>} />
       </Routes>
     </>
   );
