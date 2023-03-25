@@ -1,8 +1,8 @@
 import React from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
-// import NewsPage from "../../pages/NewPage/NewsPage";
 import BasketPage from "../../pages/BasketPage/BasketPage";
 import LoginPage from "../../pages/LoginPage/LoginPage";
+import ProductsPage from "../../pages/ProductsPage/ProductsPage";
 import RegisterPage from "../../pages/RegisterPage/RegisterPage";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 
@@ -16,11 +16,11 @@ const Router = () => {
   return (
     <>
       <Routes>
-        <Route path="/" element={<Navigate to={ROUTES.LOGIN} />} />
+        <Route path="/" element={<Navigate to={ROUTES.NEW} />} />
         <Route element={<ProtectedRoute />}>
-          <Route path={ROUTES.NEW} element={<Navigate to={ROUTES.NEW} />} />
+          <Route path={ROUTES.NEW} element={<ProductsPage />} />
+          <Route path={ROUTES.BASKET} element={<BasketPage />} />
         </Route>
-        <Route path={ROUTES.BASKET} element={<BasketPage />} />
         <Route path={ROUTES.REGISTER} element={<RegisterPage />} />
         <Route path={ROUTES.LOGIN} element={<LoginPage />} />
         <Route path="*" element={<h1>404</h1>} />

@@ -4,21 +4,21 @@ import { useLocation, useNavigate } from "react-router-dom";
 
 import Header from "./components/Header/Header";
 import Router, { ROUTES } from "./components/Router/Router";
-import { getIsLogined } from "./store/selectors";
+import { getIsLoggedIn } from "./store/selectors";
 
 const App = () => {
-  const isLoginIn = useSelector(getIsLogined);
+  const isLoggedIn = useSelector(getIsLoggedIn);
   const { pathname } = useLocation();
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!isLoginIn) {
+    if (!isLoggedIn) {
       if (pathname === ROUTES.LOGIN) {
         return;
       }
       return navigate(ROUTES.REGISTER);
     }
-  }, [isLoginIn]);
+  }, [isLoggedIn, pathname, navigate]);
 
   return (
     <>

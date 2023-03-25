@@ -1,13 +1,13 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { Navigate, Outlet } from "react-router-dom";
-import { getIsLogined } from "../../store/selectors";
+import { getIsLoggedIn } from "../../store/selectors";
 import { ROUTES } from "../Router/Router";
 
 const ProtectedRoute = ({ children }) => {
-  const isLogin = useSelector(getIsLogined);
+  const isLoggedIn = useSelector(getIsLoggedIn);
 
-  if (!isLogin) return <Navigate to={ROUTES.LOGIN} />;
+  if (!isLoggedIn) return <Navigate to={ROUTES.LOGIN} />;
   return <Outlet /> || children;
 };
 

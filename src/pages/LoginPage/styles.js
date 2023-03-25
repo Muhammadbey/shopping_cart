@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const LinkWrapper = styled.div`
-  width: 80%;
+  width: 40%;
   height: 150px;
   border-radius: 15px;
   background-color: white;
@@ -13,7 +13,7 @@ export const LinkWrapper = styled.div`
 `;
 
 export const LinkToPage = styled.h3`
-  font-size: 35px;
+  font-size: 25px;
   font-family: "Roboto", sans-serif;
   a {
     color: dark-blue;

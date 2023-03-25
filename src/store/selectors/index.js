@@ -6,6 +6,6 @@ export const getUser = (state) => state.userReducer.user;
 
 export const getUserError = (state) => state.userReducer.error;
 
-export const getIsLogined = (state) => state.userReducer.isLogined;
+export const getIsLoggedIn = (state) => state.userReducer.isLoggedIn;
 
 export const getIsLoading = (state) => state.userReducer.loading;

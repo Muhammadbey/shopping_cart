@@ -3,7 +3,7 @@ import { AsyncThunks } from "../../actions";
 
 const initialState = {
   user: {},
-  isLogined: false,
+  isLoggedIn: false,
   loading: false,
   error: null,
 };
@@ -20,7 +20,7 @@ const userSlice = createSlice({
     builder.addCase(AsyncThunks.login.fulfilled, (state, action) => {
       state.loading = false;
       state.user = action.payload;
-      state.isLogined = true;
+      state.isLoggedIn = true;
       state.error = null;
     });
     builder.addCase(AsyncThunks.login.rejected, (state, action) => {
@@ -29,6 +29,5 @@ const userSlice = createSlice({
     });
   },
 });
-
 export const userActions = userSlice.actions;
 export const userReducer = userSlice.reducer;

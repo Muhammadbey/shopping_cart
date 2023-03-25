@@ -1,75 +1,96 @@
-import { Stack, TextField } from "@mui/material";
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import { authApi } from "../../api/auth";
+import { Button, Paper, TextField } from "@mui/material";
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
 import { ROUTES } from "../../components/Router/Router";
+import { AsyncThunks } from "../../store/actions";
+import { getIsLoading } from "../../store/selectors";
 import { LinkToPage, LinkWrapper } from "../LoginPage/styles";
 
 const RegisterPage = () => {
-  const [username, setUsername] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
+  const isLoading = useSelector(getIsLoading);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-  const registerUser = (e) => {
+  const registerUser = async (e) => {
     e.preventDefault();
-    authApi.register({ username, phoneNumber, password, confirmPassword });
+    const response = await dispatch(
+      AsyncThunks.register({
+        username: e.target[0].value,
+        phoneNumber: e.target[2].value,
+        password: e.target[4].value,
+        confirmPassword: e.target[6].value,
+      })
+    );
   };
 
   return (
     <div>
-      <h1 style={{ display: "flex", justifyContent: "center" }}>REGISTER</h1>
       <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          marginBottom: "35px",
-        }}
+        style={{ display: "flex", justifyContent: "center", margin: "20px" }}
       >
-        <form action="" style={{ display: "flex", flexDirection: "column" }}>
-          <TextField
-            id="outlined-basic"
-            label="Username"
-            type="text"
-            variant="outlined"
-            sx={{ padding: "10px", marginBottom: "10px" }}
-            onChange={(e) => setUsername(e.target.value)}
-          />
-
-          <TextField
-            id="outlined-basic"
-            label="PhoneNumber"
-            type="text"
-            variant="outlined"
-            sx={{ padding: "10px", marginBottom: "10px" }}
-            onChange={(e) => setPhoneNumber(e.target.value)}
-          />
-          <TextField
-            id="outlined-basic"
-            label="Password"
-            type="password"
-            variant="outlined"
-            sx={{ padding: "10px", fontSize: "20px", marginBottom: "10px" }}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-
-          <TextField
-            id="outlined-basic"
-            label="confirmpassword"
-            type="password"
-            variant="outlined"
-            sx={{ padding: "10px", marginBottom: "10px" }}
-            onChange={(e) => setConfirmPassword(e.target.value)}
-          />
-
-          <button
-            style={{ padding: "10px", fontSize: "20px" }}
-            onClick={registerUser}
+        <Paper elevation={10} sx={{ width: "50%", padding: "15px" }}>
+          <h1
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              marginBottom: "15px",
+            }}
           >
-            Register
-          </button>
-        </form>
+            REGISTER
+          </h1>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              marginBottom: "35px",
+            }}
+          >
+            <form
+              action=""
+              style={{ display: "flex", flexDirection: "column" }}
+              onSubmit={registerUser}
+            >
+              <TextField
+                id="outlined-first"
+                label="Username"
+                type="text"
+                variant="outlined"
+                sx={{ padding: "10px", marginBottom: "10px" }}
+              />
+              <TextField
+                id="outlined-second"
+                label="PhoneNumber"
+                type="text"
+                variant="outlined"
+                sx={{ padding: "10px", marginBottom: "10px" }}
+              />
+              <TextField
+                id="outlined-third"
+                label="Password"
+                type="password"
+                variant="outlined"
+                sx={{
+                  padding: "10px",
+                  fontSize: "20px",
+                  marginBottom: "10px",
+                }}
+              />
+              <TextField
+                id="outlined-fourth"
+                label="confirmpassword"
+                type="password"
+                variant="outlined"
+                sx={{ padding: "10px", marginBottom: "10px" }}
+              />
+              <Button variant="contained" type={SubmitEvent}>
+                {isLoading ? "loading" : " Submit"}
+              </Button>
+            </form>
+          </div>
+        </Paper>
       </div>
+
       <LinkWrapper>
         <LinkToPage>
           Agar siz Register bo'lsangiz <br />

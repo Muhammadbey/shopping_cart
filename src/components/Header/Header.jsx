@@ -9,10 +9,10 @@ const Header = () => {
     <HeaderWrapper>
       <OrderList>
         <List>
-          <Link to="/news">News</Link>
-          <Link to="/basket">
+          <Link to={ROUTES.NEW}>News</Link>
+          <Link to={ROUTES.BASKET}>
             <ShoppingCart size={35} />
-          </Link>{" "}
+          </Link>
           <Link to={ROUTES.REGISTER}>
             <UserBtn>Register</UserBtn>
           </Link>
