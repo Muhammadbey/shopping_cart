@@ -14,7 +14,7 @@ const RegisterPage = () => {
 
   const registerUser = async (e) => {
     e.preventDefault();
-    const response = await dispatch(
+    await dispatch(
       AsyncThunks.register({
         username: e.target[0].value,
         phoneNumber: e.target[2].value,
@@ -83,7 +83,7 @@ const RegisterPage = () => {
                 variant="outlined"
                 sx={{ padding: "10px", marginBottom: "10px" }}
               />
-              <Button variant="contained" type={SubmitEvent}>
+              <Button variant="contained" type="submit">
                 {isLoading ? "loading" : " Submit"}
               </Button>
             </form>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { UserBtn } from "../../components/Header/style";
@@ -22,8 +22,17 @@ const LoginPage = () => {
         password: e.target[2].value,
       })
     );
-    navigate(ROUTES.NEW);
+    if (response.payload?.token) {
+      navigate(ROUTES.PRODUCTS);
+    }
   };
+
+  const inputRef = useRef(null);
+
+  useEffect(() => {
+    inputRef.current.focus();
+  }, []);
+
   return (
     <div>
       <div
@@ -57,6 +66,7 @@ const LoginPage = () => {
               label="Phone number"
               type="phone-number"
               variant="outlined"
+              inputRef={inputRef}
               sx={{
                 width: "85%",
                 fontSize: "20px",
@@ -85,10 +95,10 @@ const LoginPage = () => {
 
             <Button
               variant="contained"
-              type={SubmitEvent}
+              type="submit"
               sx={{ width: "300px", margin: "25px auto" }}
             >
-              {isLoading ? "loading" : " Submit"}
+              {isLoading ? "loading..." : " Submit"}
             </Button>
           </form>
         </Paper>

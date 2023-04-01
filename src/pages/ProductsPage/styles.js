@@ -8,10 +8,4 @@ import styled from "styled-components";
 // //   font-size: 35px;
 // // `;
 
-export const Ullist = styled.ul`
-  width: 100%;
-  padding: 50px;
-  display: flex;
-  gap: 50px;
-  background-color: white;
-`;
+

@@ -11,7 +11,7 @@ const ProductsPage = () => {
   const products = useSelector(getProductsList);
 
   const fetchProducts = async () => {
-    const response = await dispatch(AsyncThunks.getProducts());
+    await dispatch(AsyncThunks.getProducts());
   };
 
   useEffect(() => {

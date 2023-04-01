@@ -1,14 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { AsyncThunks } from "../../actions";
-// import mockProducts from "../../../mockProducts";
 
 const initialState = {
   products: [],
+  product: {},
   loading: false,
   error: null,
 };
 export const productsSlice = createSlice({
-  name: "Product",
+  name: "Products",
   initialState,
   reducers: {},
   extraReducers: (builder) => {
@@ -28,5 +28,5 @@ export const productsSlice = createSlice({
     });
   },
 });
-export const productActions = productsSlice.actions;
+export const productsActions = productsSlice.actions;
 export const productsReducer = productsSlice.reducer;
